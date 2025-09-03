@@ -189,7 +189,7 @@ impl Renderer {
     /// * [`RendererError`] - If any Vulkan or io error is encountered during initialization.
     #[cfg(feature = "vk-mem")]
     pub fn with_vk_mem_allocator(
-        vk_mem_allocator: Arc<Mutex<VkMemAllocator>>,
+        vk_mem_allocator: Arc<VkMemAllocator>,
         device: Device,
         #[cfg(not(feature = "dynamic-rendering"))] render_pass: vk::RenderPass,
         #[cfg(feature = "dynamic-rendering")] dynamic_rendering: DynamicRendering,

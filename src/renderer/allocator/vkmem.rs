@@ -11,18 +11,16 @@ use vk_mem::{
 pub type Memory = Allocation;
 
 pub struct Allocator {
-    pub allocator: Arc<Mutex<GpuAllocator>>,
+    pub allocator: Arc<GpuAllocator>,
 }
 
 impl Allocator {
-    pub fn new(allocator: Arc<Mutex<vk_mem::Allocator>>) -> Self {
+    pub fn new(allocator: Arc<vk_mem::Allocator>) -> Self {
         Self { allocator }
     }
 
-    fn get_allocator(&self) -> RendererResult<MutexGuard<GpuAllocator>> {
-        self.allocator.lock().map_err(|e| {
-            RendererError::Allocator(format!("Failed to acquire lock on allocator: {e}"))
-        })
+    fn get_allocator(&self) -> RendererResult<&GpuAllocator> {
+        Ok(&self.allocator)
     }
 }
 

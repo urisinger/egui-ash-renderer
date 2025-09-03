@@ -212,7 +212,7 @@ impl System {
             };
 
             Renderer::with_vk_mem_allocator(
-                Arc::new(Mutex::new(allocator)),
+                Arc::new(allocator),
                 vulkan_context.device.clone(),
                 swapchain.render_pass,
                 Options {
